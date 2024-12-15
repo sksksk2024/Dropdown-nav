@@ -1,0 +1,109 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Default */
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+  user-select: none;
+}
+
+/* Variables */
+
+:root {
+  /* Font Size */
+  --font-size-2xs: 0.5rem;
+  --font-size-xs: 0.75rem; /* Tailwind default */
+  --font-size-sm: 0.875rem; /* Tailwind default */
+  --font-size-md: 1rem;
+  --font-size-md-1: 1.1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.5rem;
+  --font-size-2xl: 2rem;
+  --font-size-2-2xl: 2.2rem;
+  --font-size-2-4xl: 2.4rem;
+  --font-size-3xl: 3rem;
+  --font-size-4xl: 4rem;
+  --font-size-4-5xl: 4.5rem;
+
+  /* Colors */
+  --most-white: hsl(0, 0%, 98%);
+  --medium-gray: hsl(0, 0%, 41%);
+  --most-black: hsl(0, 0%, 8%);
+}
+/* Styles */
+html,
+body {
+  background: #fff;
+  /* min-height: 470vh; */
+  display: flex;
+  flex-direction: column; /* Stack elements vertically */
+  justify-content: flex-start; /* Adjust alignment */
+  align-items: center; /* Make children span the width */
+  min-height: 100vh;
+}
+
+body.dimmed {
+  filter: brightness(50%);
+  transition: filter 0.3s ease-in-out;
+}
+
+/* Loader */
+.container {
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader {
+  width: 80px;
+  height: 80px;
+  position: relative;
+  animation: spin 2s linear infinite;
+}
+
+.loader::before,
+.loader::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 35px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #3498db;
+  animation: bounce 2s infinite ease-in-out;
+}
+
+.loader::after {
+  left: -35px;
+  background: #e74c3c;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-30px);
+  }
+}
