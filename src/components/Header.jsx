@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import Logo from "./../images/logo.svg";
 import Burger from "./../images/icon-menu.svg";
 import Close from "./../images/icon-close-menu.svg";
-import ArrUp from "./../images/icon-arrow-up.svg";
 import ArrDown from "./../images/icon-arrow-down.svg";
 import Todo from "./../images/icon-todo.svg";
 import Calendar from "./../images/icon-calendar.svg";
@@ -31,16 +30,19 @@ function Header() {
   };
 
   useEffect(() => {
-    if (isHidden) {
+    // Attach the event listener only when the menu is open
+    if (!isHidden) {
       document.addEventListener("click", handleClickOutside);
+    } else {
+      document.removeEventListener("click", handleClickOutside);
     }
 
     // Disable scrolling when menu is open
     document.body.style.overflow = isHidden ? "auto" : "hidden";
+
+    // Clean up on component unmount
     return () => {
       document.removeEventListener("click", handleClickOutside);
-
-      // Clean up on component unmount
       document.body.style.overflow = "auto";
     };
   }, [isHidden]);
