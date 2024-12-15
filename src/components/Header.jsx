@@ -30,19 +30,16 @@ function Header() {
   };
 
   useEffect(() => {
-    // Attach the event listener only when the menu is open
-    if (!isHidden) {
+    if (isHidden) {
       document.addEventListener("click", handleClickOutside);
-    } else {
-      document.removeEventListener("click", handleClickOutside);
     }
 
     // Disable scrolling when menu is open
     document.body.style.overflow = isHidden ? "auto" : "hidden";
-
-    // Clean up on component unmount
     return () => {
       document.removeEventListener("click", handleClickOutside);
+
+      // Clean up on component unmount
       document.body.style.overflow = "auto";
     };
   }, [isHidden]);
